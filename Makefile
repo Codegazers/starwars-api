@@ -1,3 +1,5 @@
+image:
+	docker build -t codegazers/swapi:$$(date +%Y%m%d) -f Dockerfile.slim .
 
 install:
 	pip install -r requirements.txt

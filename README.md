@@ -11,9 +11,14 @@ Source code for [swapi.co](https://swapi.co)
 docker run -d -p 8000:8000 codegazers/swapi:slim
 ~~~
 
-# To change API path (for development, testing, etc...) use BASE_API_PATH environment variable:
+# It is possible to change API path (for development, testing, etc...) and api version (added version path) using API_VERSION and BASE_API_PATH environment variable:
 ~~~
-docker run -p 8000:8000 -e BASE_API_PATH="dev" -d codegazers/swapi:slim
+docker run --name swapi \
+-p 8000:8000 \
+--env BASE_API_PATH="dev" \
+--env API_VERSION="v1" \
+-d \
+codegazers/swapi:slim
 ~~~
 This creates a container with API listening  on 8000 and path /dev/api
 ```
