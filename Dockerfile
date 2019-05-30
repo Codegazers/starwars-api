@@ -16,4 +16,5 @@ RUN make install build load_data
 
 EXPOSE 8000
 
-CMD make serve
+CMD     python manage.py runserver 0.0.0.0:8000
+

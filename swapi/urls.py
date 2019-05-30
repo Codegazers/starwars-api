@@ -1,4 +1,11 @@
 from __future__ import unicode_literals
+import os
+import re
+BASE_API_PATH=""
+
+if "BASE_API_PATH" in os.environ:
+    BASE_API_PATH = re.sub('[^ a-zA-Z0-9]', '', str(os.environ["BASE_API_PATH"]))
+    BASE_API_PATH=BASE_API_PATH+"/"
 
 from django.conf.urls import patterns, url, include
 from django.contrib import admin
@@ -19,17 +26,17 @@ router.register(r"starships", views.StarshipViewSet)
 
 
 urlpatterns = patterns("",
-    url(r"^admin/", include(admin.site.urls)),
-    url(r"^$", "swapi.views.index"),
-    url(r"^documentation$", "swapi.views.documentation"),
-    url(r"^about$", "swapi.views.about"),
-    url(r"^stats$", "swapi.views.stats"),
-    url(r"^stripe/donation", "swapi.views.stripe_donation"),
-    url(r"^api/people/schema$", "resources.schemas.people"),
-    url(r"^api/planets/schema$", "resources.schemas.planets"),
-    url(r"^api/films/schema$", "resources.schemas.films"),
-    url(r"^api/species/schema$", "resources.schemas.species"),
-    url(r"^api/vehicles/schema$", "resources.schemas.vehicles"),
-    url(r"^api/starships/schema$", "resources.schemas.starships"),
-    url(r"^api/", include(router.urls)),
+    url(r"^"+BASE_API_PATH+"admin/", include(admin.site.urls)),
+    url(r"^"+BASE_API_PATH+"$", "swapi.views.index"),
+    url(r"^"+BASE_API_PATH+"documentation$", "swapi.views.documentation"),
+    url(r"^"+BASE_API_PATH+"about$", "swapi.views.about"),
+    url(r"^"+BASE_API_PATH+"stats$", "swapi.views.stats"),
+    url(r"^"+BASE_API_PATH+"stripe/donation", "swapi.views.stripe_donation"),
+    url(r"^"+BASE_API_PATH+"api/people/schema$", "resources.schemas.people"),
+    url(r"^"+BASE_API_PATH+"api/planets/schema$", "resources.schemas.planets"),
+    url(r"^"+BASE_API_PATH+"api/films/schema$", "resources.schemas.films"),
+    url(r"^"+BASE_API_PATH+"api/species/schema$", "resources.schemas.species"),
+    url(r"^"+BASE_API_PATH+"api/vehicles/schema$", "resources.schemas.vehicles"),
+    url(r"^"+BASE_API_PATH+"api/starships/schema$", "resources.schemas.starships"),
+    url(r"^"+BASE_API_PATH+"api/", include(router.urls)),
 )

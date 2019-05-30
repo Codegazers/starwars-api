@@ -10,3 +10,13 @@ Source code for [swapi.co](https://swapi.co)
 ~~~
 docker run -d -p 8000:8000 codegazers/swapi:slim
 ~~~
+
+# To change API path (for development, testing, etc...) use BASE_API_PATH environment variable:
+~~~
+docker run -p 8000:8000 -e BASE_API_PATH="dev" -ti codegazers/swapi:slim
+~~~
+This creates a container with API listening  on 8000 and path /dev/api
+```
+curl http://0.0.0.0:8000/dev/api/planets/
+```
+
