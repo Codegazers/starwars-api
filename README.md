@@ -18,6 +18,7 @@ docker run --name swapi \
 --env BASE_API_PATH="dev" \
 --env API_VERSION="v1" \
 -d \
+--restart unless-stopped \
 codegazers/swapi:slim
 ~~~
 This creates a container with API listening  on 8000 and path /dev/api
