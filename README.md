@@ -8,12 +8,16 @@ Source code for [swapi.co](https://swapi.co)
 # This is an Docker Image Ready version
 
 ~~~
-docker run -d -p 8000:8000 codegazers/swapi:slim
+docker container run --name swapi \
+--restart unless-stopped \
+-d \
+-p 8000:8000 \
+codegazers/swapi:slim
 ~~~
 
 # It is possible to change API path (for development, testing, etc...) and api version (added version path) using API_VERSION and BASE_API_PATH environment variable:
 ~~~
-docker run --name swapi \
+docker container run --name swapi \
 -p 8000:8000 \
 --env BASE_API_PATH="dev" \
 --env API_VERSION="v1" \
